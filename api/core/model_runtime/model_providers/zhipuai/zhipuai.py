@@ -1,8 +1,10 @@
 import logging
+from typing import Any
 
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
 from core.model_runtime.model_providers.__base.model_provider import ModelProvider
+from core.model_runtime.model_providers.zhipuai.zhipuai_sdk import ZhipuAI
 
 logger = logging.getLogger(__name__)
 
@@ -28,3 +30,10 @@ class ZhipuaiProvider(ModelProvider):
         except Exception as ex:
             logger.exception(f'{self.get_provider_schema().provider} credentials validate failed')
             raise ex
+
+    @staticmethod
+    def get_client(credentials: dict, **kwargs: Any) -> ZhipuAI:
+        client = ZhipuAI(
+            api_key=credentials['api_key'],
+        )
+        return client
