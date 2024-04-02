@@ -6,7 +6,7 @@ from typing import Optional, Union, cast
 
 import anthropic
 import requests
-from anthropic import Stream
+from anthropic import Anthropic, Stream
 from anthropic.types import (
     ContentBlockDeltaEvent,
     Message,
@@ -100,7 +100,7 @@ class AnthropicLargeLanguageModel(LargeLanguageModel):
             model_parameters['max_tokens'] = model_parameters.pop('max_tokens_to_sample')
 
         # init model client
-        client = AnthropicProvider.get_client(**credentials_kwargs)
+        client = Anthropic(**credentials_kwargs)
 
         extra_model_kwargs = {}
         if stop:
