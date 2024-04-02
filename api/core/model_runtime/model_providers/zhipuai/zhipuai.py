@@ -32,7 +32,7 @@ class ZhipuaiProvider(ModelProvider):
             raise ex
 
     @staticmethod
-    def get_client(credentials: dict, **kwargs: Any) -> ZhipuAI:
+    def get_client(credentials: dict = None, **kwargs: Any) -> ZhipuAI:
         client = ZhipuAI(
             api_key=credentials['api_key'],
         )
