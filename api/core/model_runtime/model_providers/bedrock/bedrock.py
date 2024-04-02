@@ -1,10 +1,14 @@
 import logging
+from typing import Any
+
+from anthropic import AnthropicBedrock
 
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
 from core.model_runtime.model_providers.__base.model_provider import ModelProvider
 
 logger = logging.getLogger(__name__)
+
 
 class BedrockProvider(ModelProvider):
     def validate_provider_credentials(self, credentials: dict) -> None:
@@ -29,3 +33,12 @@ class BedrockProvider(ModelProvider):
         except Exception as ex:
             logger.exception(f'{self.get_provider_schema().provider} credentials validate failed')
             raise ex
+
+    @staticmethod
+    def get_client(credentials: dict = None, **kwargs: Any) -> AnthropicBedrock:
+        client = AnthropicBedrock(
+            aws_access_key=credentials["aws_access_key_id"],
+            aws_secret_key=credentials["aws_secret_access_key"],
+            aws_region=credentials["aws_region"],
+        )
+        return client
