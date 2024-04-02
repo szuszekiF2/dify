@@ -14,7 +14,7 @@ class HuggingfaceHubProvider(ModelProvider):
         pass
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> Any:
+    def get_client(credentials: dict = None, **kwargs: Any) -> InferenceClient:
         client = InferenceClient(
             token=credentials['huggingfacehub_api_token'],
         )

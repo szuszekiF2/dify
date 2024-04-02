@@ -1,6 +1,7 @@
 import logging
 from typing import Any
 
+from httpx import Timeout
 from replicate import Client as ReplicateClient
 
 from core.model_runtime.model_providers.__base.model_provider import ModelProvider
@@ -17,6 +18,6 @@ class ReplicateProvider(ModelProvider):
     def get_client(credentials: dict = None, **kwargs: Any) -> ReplicateClient:
         client = ReplicateClient(
             api_token=credentials['replicate_api_token'],
-            timeout=kwargs.get('timeout', 30),
+            timeout=Timeout(30),
         )
         return client
