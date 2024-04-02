@@ -32,7 +32,7 @@ class BaichuanProvider(ModelProvider):
             raise ex
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> Any:
+    def get_client(credentials: dict = None, **kwargs: Any) -> BaichuanModel:
         client = BaichuanModel(
             api_key=credentials.get('api_key'),
             secret_key=credentials.get('secret_key', '')
