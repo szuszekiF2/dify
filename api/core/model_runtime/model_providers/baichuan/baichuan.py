@@ -1,8 +1,10 @@
 import logging
+from typing import Any
 
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
 from core.model_runtime.model_providers.__base.model_provider import ModelProvider
+from core.model_runtime.model_providers.baichuan.llm.baichuan_turbo import BaichuanModel
 
 logger = logging.getLogger(__name__)
 
@@ -28,3 +30,11 @@ class BaichuanProvider(ModelProvider):
         except Exception as ex:
             logger.exception(f'{self.get_provider_schema().provider} credentials validate failed')
             raise ex
+
+    @staticmethod
+    def get_client(credentials: dict = None, **kwargs: Any) -> Any:
+        client = BaichuanModel(
+            api_key=credentials.get('api_key'),
+            secret_key=credentials.get('secret_key', '')
+        )
+        return client
