@@ -6,7 +6,7 @@ from typing import Optional, Union, cast
 
 import anthropic
 import requests
-from anthropic import Anthropic, Stream
+from anthropic import Stream
 from anthropic.types import (
     ContentBlockDeltaEvent,
     Message,
