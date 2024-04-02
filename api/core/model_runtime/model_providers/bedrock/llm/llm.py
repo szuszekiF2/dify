@@ -8,7 +8,7 @@ from typing import Optional, Union, cast
 
 import boto3
 import requests
-from anthropic import AnthropicBedrock, Stream
+from anthropic import Stream
 from anthropic.types import (
     ContentBlockDeltaEvent,
     Message,
