@@ -34,6 +34,6 @@ class AnthropicProvider(ModelProvider):
             raise ex
 
     @staticmethod
-    def get_client(credentials: dict, **kwargs: Any) -> Anthropic:
+    def get_client(credentials: dict = None, **kwargs: Any) -> Anthropic:
         client = Anthropic(**kwargs)
         return client

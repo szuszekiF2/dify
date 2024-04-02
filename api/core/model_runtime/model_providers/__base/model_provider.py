@@ -28,7 +28,7 @@ class ModelProvider(ABC):
         raise NotImplementedError
 
     @staticmethod
-    def get_client(credentials: dict, **kwargs: Any) -> None:
+    def get_client(credentials: dict = None, **kwargs: Any) -> None:
         raise NotImplementedError
 
     def get_provider_schema(self) -> ProviderEntity:
