@@ -1,4 +1,7 @@
 import logging
+from typing import Any
+
+import google.generativeai.client as GoogleGenerativeAiClient
 
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
@@ -29,3 +32,12 @@ class GoogleProvider(ModelProvider):
         except Exception as ex:
             logger.exception(f'{self.get_provider_schema().provider} credentials validate failed')
             raise ex
+
+    @staticmethod
+    def get_client(credentials: dict = None, **kwargs: Any) -> Any:
+        new_client_manager = GoogleGenerativeAiClient._ClientManager()
+        new_client_manager.configure(
+            api_key=credentials["google_api_key"],
+        )
+        client = new_client_manager.make_client(name=kwargs['name'])
+        return client
