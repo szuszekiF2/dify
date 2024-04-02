@@ -1,4 +1,7 @@
 import logging
+from typing import Any
+
+import cohere
 
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
@@ -29,3 +32,13 @@ class CohereProvider(ModelProvider):
         except Exception as ex:
             logger.exception(f'{self.get_provider_schema().provider} credentials validate failed')
             raise ex
+
+    @staticmethod
+    def get_client(credentials: dict, **kwargs: Any) -> cohere.Client:
+        """
+        Get Cohere client
+        """
+        client = cohere.Client(
+            api_key=credentials.get('api_key'),
+        )
+        return client
