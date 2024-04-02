@@ -1,4 +1,7 @@
 import logging
+from typing import Any
+
+from anthropic import Anthropic
 
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
@@ -29,3 +32,8 @@ class AnthropicProvider(ModelProvider):
         except Exception as ex:
             logger.exception(f'{self.get_provider_schema().provider} credentials validate failed')
             raise ex
+
+    @staticmethod
+    def get_client(credentials: dict, **kwargs: Any) -> Anthropic:
+        client = Anthropic(**kwargs)
+        return client
