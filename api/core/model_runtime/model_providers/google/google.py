@@ -34,7 +34,7 @@ class GoogleProvider(ModelProvider):
             raise ex
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> Any:
+    def get_service_client(credentials: dict = None, **kwargs: Any) -> Any:
         new_client_manager = GoogleGenerativeAiClient._ClientManager()
         new_client_manager.configure(
             api_key=credentials["google_api_key"],

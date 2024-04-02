@@ -28,7 +28,7 @@ class ZhipuAITextEmbeddingModel(_CommonZhipuaiAI, TextEmbeddingModel):
         :return: embeddings result
         """
         credentials_kwargs = self._to_credential_kwargs(credentials)
-        client = ZhipuaiProvider.get_client(credentials=credentials_kwargs)
+        client = ZhipuaiProvider.get_service_client(credentials=credentials_kwargs)
 
         embeddings, embedding_used_tokens = self.embed_documents(model, client, texts)
 
@@ -67,7 +67,7 @@ class ZhipuAITextEmbeddingModel(_CommonZhipuaiAI, TextEmbeddingModel):
         try:
             # transform credentials to kwargs for model instance
             credentials_kwargs = self._to_credential_kwargs(credentials)
-            client = ZhipuaiProvider.get_client(credentials=credentials_kwargs)
+            client = ZhipuaiProvider.get_service_client(credentials=credentials_kwargs)
 
             # call embedding model
             self.embed_documents(

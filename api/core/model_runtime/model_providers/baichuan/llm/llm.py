@@ -93,7 +93,7 @@ class BaichuanLarguageModel(LargeLanguageModel):
 
     def validate_credentials(self, model: str, credentials: dict) -> None:
         # ping
-        instance = BaichuanProvider.get_client(credentials=credentials)
+        instance = BaichuanProvider.get_service_client(credentials=credentials)
 
         try:
             instance.generate(model=model, stream=False, messages=[
@@ -111,7 +111,7 @@ class BaichuanLarguageModel(LargeLanguageModel):
         if tools is not None and len(tools) > 0:
             raise InvokeBadRequestError("Baichuan model doesn't support tools")
         
-        instance = BaichuanProvider.get_client(credentials=credentials)
+        instance = BaichuanProvider.get_service_client(credentials=credentials)
 
         # convert prompt messages to baichuan messages
         messages = [

@@ -153,7 +153,7 @@ class GoogleLargeLanguageModel(LargeLanguageModel):
                 else:
                     history.append(content)
 
-        google_model._client = GoogleProvider.get_client(credentials=credentials, name="generative")
+        google_model._client = GoogleProvider.get_service_client(credentials=credentials, name="generative")
 
         safety_settings={
             HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,

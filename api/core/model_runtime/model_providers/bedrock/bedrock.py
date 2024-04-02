@@ -35,7 +35,7 @@ class BedrockProvider(ModelProvider):
             raise ex
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> AnthropicBedrock:
+    def get_service_client(credentials: dict = None, **kwargs: Any) -> AnthropicBedrock:
         client = AnthropicBedrock(
             aws_access_key=credentials["aws_access_key_id"],
             aws_secret_key=credentials["aws_secret_access_key"],

@@ -95,7 +95,7 @@ class BedrockLargeLanguageModel(LargeLanguageModel):
         # use Anthropic official SDK references
         # - https://docs.anthropic.com/claude/reference/claude-on-amazon-bedrock
         # - https://github.com/anthropics/anthropic-sdk-python
-        client = BedrockProvider.get_client(credentials=credentials)
+        client = BedrockProvider.get_service_client(credentials=credentials)
 
         extra_model_kwargs = {}
         if stop:

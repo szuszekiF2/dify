@@ -34,7 +34,7 @@ class CohereProvider(ModelProvider):
             raise ex
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> cohere.Client:
+    def get_service_client(credentials: dict = None, **kwargs: Any) -> cohere.Client:
         client = cohere.Client(
             api_key=credentials.get('api_key'),
         )

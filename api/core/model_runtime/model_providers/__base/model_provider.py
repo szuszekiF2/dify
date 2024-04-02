@@ -28,7 +28,7 @@ class ModelProvider(ABC):
         raise NotImplementedError
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> Any:
+    def get_service_client(credentials: dict = None, **kwargs: Any) -> Any:
         """
         Get an SDK client instance for model provider, if dedicate SDK available
         """

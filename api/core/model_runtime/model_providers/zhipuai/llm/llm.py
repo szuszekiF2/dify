@@ -155,7 +155,7 @@ class ZhipuAILargeLanguageModel(_CommonZhipuaiAI, LargeLanguageModel):
         if stop:
             extra_model_kwargs['stop'] = stop
 
-        client = ZhipuaiProvider.get_client(credentials=credentials_kwargs)
+        client = ZhipuaiProvider.get_service_client(credentials=credentials_kwargs)
 
         if len(prompt_messages) == 0:
             raise ValueError('At least one message is required')

@@ -21,7 +21,7 @@ class HuggingfaceHubTextEmbeddingModel(_CommonHuggingfaceHub, TextEmbeddingModel
 
     def _invoke(self, model: str, credentials: dict, texts: list[str],
                 user: Optional[str] = None) -> TextEmbeddingResult:
-        client = HuggingfaceHubProvider.get_client(credentials=credentials)
+        client = HuggingfaceHubProvider.get_service_client(credentials=credentials)
 
         execute_model = model
 
@@ -86,7 +86,7 @@ class HuggingfaceHubTextEmbeddingModel(_CommonHuggingfaceHub, TextEmbeddingModel
             else:
                 raise CredentialsValidateFailedError('Huggingface Hub Endpoint Type is invalid.')
 
-            client = HuggingfaceHubProvider.get_client(credentials=credentials)
+            client = HuggingfaceHubProvider.get_service_client(credentials=credentials)
             client.feature_extraction(text='hello world', model=model)
         except Exception as ex:
             raise CredentialsValidateFailedError(str(ex))

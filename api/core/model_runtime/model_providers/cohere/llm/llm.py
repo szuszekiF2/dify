@@ -174,7 +174,7 @@ class CohereLargeLanguageModel(LargeLanguageModel):
         :return: full response or stream response chunk generator result
         """
         # initialize client
-        client = CohereProvider.get_client(credentials)
+        client = CohereProvider.get_service_client(credentials)
 
         if stop:
             model_parameters['end_sequences'] = stop
@@ -318,7 +318,7 @@ class CohereLargeLanguageModel(LargeLanguageModel):
         :return: full response or stream response chunk generator result
         """
         # initialize client
-        client = CohereProvider.get_client(credentials)
+        client = CohereProvider.get_service_client(credentials)
 
         if stop:
             model_parameters['stop_sequences'] = stop
@@ -636,7 +636,7 @@ class CohereLargeLanguageModel(LargeLanguageModel):
         :return: number of tokens
         """
         # initialize client
-        client = CohereProvider.get_client(credentials)
+        client = CohereProvider.get_service_client(credentials)
 
         response = client.tokenize(
             text=text,

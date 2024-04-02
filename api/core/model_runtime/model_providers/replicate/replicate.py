@@ -15,7 +15,7 @@ class ReplicateProvider(ModelProvider):
         pass
 
     @staticmethod
-    def get_client(credentials: dict = None, **kwargs: Any) -> ReplicateClient:
+    def get_service_client(credentials: dict = None, **kwargs: Any) -> ReplicateClient:
         client = ReplicateClient(
             api_token=credentials['replicate_api_token'],
             timeout=Timeout(30),

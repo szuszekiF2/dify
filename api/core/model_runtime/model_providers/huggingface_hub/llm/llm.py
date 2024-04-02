@@ -33,7 +33,7 @@ class HuggingfaceHubLargeLanguageModel(_CommonHuggingfaceHub, LargeLanguageModel
                 tools: Optional[list[PromptMessageTool]] = None, stop: Optional[list[str]] = None, stream: bool = True,
                 user: Optional[str] = None) -> Union[LLMResult, Generator]:
 
-        client = HuggingfaceHubProvider.get_client(credentials=credentials)
+        client = HuggingfaceHubProvider.get_service_client(credentials=credentials)
 
         if credentials['huggingfacehub_api_type'] == 'inference_endpoints':
             model = credentials['huggingfacehub_endpoint_url']
@@ -84,7 +84,7 @@ class HuggingfaceHubLargeLanguageModel(_CommonHuggingfaceHub, LargeLanguageModel
                 raise CredentialsValidateFailedError('Huggingface Hub Task Type must be one of text2text-generation, '
                                                      'text-generation.')
 
-            client = HuggingfaceHubProvider.get_client(credentials=credentials)
+            client = HuggingfaceHubProvider.get_service_client(credentials=credentials)
 
             if credentials['huggingfacehub_api_type'] == 'inference_endpoints':
                 model = credentials['huggingfacehub_endpoint_url']

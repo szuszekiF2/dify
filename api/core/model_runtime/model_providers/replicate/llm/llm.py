@@ -35,7 +35,7 @@ class ReplicateLargeLanguageModel(_CommonReplicate, LargeLanguageModel):
 
         version = credentials['model_version']
 
-        client = ReplicateProvider.get_client(credentials)
+        client = ReplicateProvider.get_service_client(credentials)
         model_info = client.models.get(model)
         model_info_version = model_info.versions.get(version)
 
@@ -75,7 +75,7 @@ class ReplicateLargeLanguageModel(_CommonReplicate, LargeLanguageModel):
         version = credentials['model_version']
 
         try:
-            client = ReplicateProvider.get_client(credentials)
+            client = ReplicateProvider.get_service_client(credentials)
             model_info = client.models.get(model)
             model_info_version = model_info.versions.get(version)
 
@@ -115,7 +115,7 @@ class ReplicateLargeLanguageModel(_CommonReplicate, LargeLanguageModel):
     def _get_customizable_model_parameter_rules(cls, model: str, credentials: dict) -> list[ParameterRule]:
         version = credentials['model_version']
 
-        client = ReplicateProvider.get_client(credentials)
+        client = ReplicateProvider.get_service_client(credentials)
         model_info = client.models.get(model)
         model_info_version = model_info.versions.get(version)
 
