@@ -1,6 +1,5 @@
 import os
 from abc import ABC, abstractmethod
-from typing import Any
 
 import yaml
 
@@ -24,13 +23,6 @@ class ModelProvider(ABC):
         if validate failed, raise exception
 
         :param credentials: provider credentials, credentials form defined in `provider_credential_schema`.
-        """
-        raise NotImplementedError
-
-    @staticmethod
-    def get_service_client(credentials: dict = None, **kwargs: Any) -> Any:
-        """
-        Get an SDK client instance for model provider, if dedicate SDK available
         """
         raise NotImplementedError
 
