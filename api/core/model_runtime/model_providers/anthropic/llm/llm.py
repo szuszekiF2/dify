@@ -216,7 +216,7 @@ class AnthropicLargeLanguageModel(LargeLanguageModel):
         """
         prompt = self._convert_messages_to_prompt_anthropic(prompt_messages)
 
-        client = AnthropicProvider.get_client(api_key="")
+        client = AnthropicProvider.get_service_client(api_key="")
         tokens = client.count_tokens(prompt)
 
         tool_call_inner_prompts_tokens_map = {
