@@ -4,7 +4,6 @@ from typing import Optional, Union
 
 import google.api_core.exceptions as exceptions
 import google.generativeai as genai
-import google.generativeai.client as client
 from google.generativeai.types import ContentType, GenerateContentResponse, HarmBlockThreshold, HarmCategory
 from google.generativeai.types.content_types import to_part
 
@@ -28,6 +27,7 @@ from core.model_runtime.errors.invoke import (
 )
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
 from core.model_runtime.model_providers.__base.large_language_model import LargeLanguageModel
+from core.model_runtime.model_providers.google.google import GoogleProvider
 
 logger = logging.getLogger(__name__)
 
@@ -153,13 +153,7 @@ class GoogleLargeLanguageModel(LargeLanguageModel):
                 else:
                     history.append(content)
 
-
-        # Create a new ClientManager with tenant's API key
-        new_client_manager = client._ClientManager()
-        new_client_manager.configure(api_key=credentials["google_api_key"])
-        new_custom_client = new_client_manager.make_client("generative")
-
-        google_model._client = new_custom_client
+        google_model._client = GoogleProvider.get_service_client(credentials=credentials, name="generative")
 
         safety_settings={
             HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
