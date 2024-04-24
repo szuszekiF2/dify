@@ -8,7 +8,7 @@ from models.dataset import Dataset
 from tests.unit_tests.core.rag.datasource.vdb.test_vector_store import (
     get_sample_document,
     get_sample_embedding,
-    mock_redis,
+    setup_mock_redis,
 )
 
 
@@ -32,9 +32,7 @@ def test_default_value():
     assert config.database == 'default'
 
 
-def test_milvus_vector() -> None:
-    mock_redis()
-
+def test_milvus_vector(setup_mock_redis) -> None:
     dataset_id = str(uuid.uuid4())
     vector = MilvusVector(
         collection_name=Dataset.gen_collection_name_by_id(dataset_id),

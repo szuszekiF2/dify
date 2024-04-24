@@ -1,5 +1,7 @@
 from unittest.mock import MagicMock
 
+import pytest
+
 from core.rag.models.document import Document
 from extensions import ext_redis
 
@@ -29,7 +31,8 @@ def get_sample_document(sample_dataset_id: str) -> Document:
     return doc
 
 
-def mock_redis() -> None:
+@pytest.fixture
+def setup_mock_redis() -> None:
     # get
     ext_redis.redis_client.get = MagicMock(return_value=None)
 

@@ -7,12 +7,11 @@ from tests.unit_tests.core.rag.datasource.vdb.test_vector_store import (
     get_sample_embedding,
     get_sample_query_vector,
     get_sample_text,
-    mock_redis,
+    setup_mock_redis,
 )
 
 
-def test_weaviate_vector() -> None:
-    mock_redis()
+def test_weaviate_vector(setup_mock_redis) -> None:
 
     attributes = ['doc_id', 'dataset_id', 'document_id', 'doc_hash']
     dataset_id = str(uuid.uuid4())
