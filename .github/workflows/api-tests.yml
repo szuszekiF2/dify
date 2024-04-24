@@ -42,6 +42,30 @@ jobs:
         with:
           packages: ffmpeg
 
+      - name: Set up Weaviate
+        uses: hoverkraft-tech/compose-action@v2.0.0
+        with:
+          compose-file: docker/docker-compose.middleware.yaml
+          services: |
+            redis
+            weaviate
+
+      - name: Set up Qdrant
+        uses: hoverkraft-tech/compose-action@v2.0.0
+        with:
+          compose-file: docker/docker-compose.qdrant.middleware.yaml
+          services: |
+            qdrant
+
+      - name: Set up Milvus
+        uses: hoverkraft-tech/compose-action@v2.0.0
+        with:
+          compose-file: docker/milvus-standalone-docker-compose.yml
+          services: |
+            etcd
+            minio
+            standalone
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -62,3 +86,6 @@ jobs:
 
       - name: Run Workflow
         run: dev/pytest/pytest_workflow.sh
+
+      - name: Run Vector Store
+        run: dev/pytest/pytest_vdb.sh
