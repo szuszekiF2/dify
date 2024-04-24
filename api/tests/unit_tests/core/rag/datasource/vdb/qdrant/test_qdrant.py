@@ -7,10 +7,13 @@ from tests.unit_tests.core.rag.datasource.vdb.test_vector_store import (
     get_sample_embedding,
     get_sample_query_vector,
     get_sample_text,
+    mock_redis,
 )
 
 
 def test_qdrant_vector()-> None:
+    mock_redis()
+
     dataset_id = str(uuid.uuid4())
     vector = QdrantVector(
         collection_name=Dataset.gen_collection_name_by_id(dataset_id),

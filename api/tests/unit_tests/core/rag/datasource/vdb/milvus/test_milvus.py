@@ -5,7 +5,11 @@ from pydantic.error_wrappers import ValidationError
 
 from core.rag.datasource.vdb.milvus.milvus_vector import MilvusConfig, MilvusVector
 from models.dataset import Dataset
-from tests.unit_tests.core.rag.datasource.vdb.test_vector_store import get_sample_document, get_sample_embedding
+from tests.unit_tests.core.rag.datasource.vdb.test_vector_store import (
+    get_sample_document,
+    get_sample_embedding,
+    mock_redis,
+)
 
 
 def test_default_value():
@@ -29,6 +33,8 @@ def test_default_value():
 
 
 def test_milvus_vector() -> None:
+    mock_redis()
+
     dataset_id = str(uuid.uuid4())
     vector = MilvusVector(
         collection_name=Dataset.gen_collection_name_by_id(dataset_id),
