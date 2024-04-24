@@ -1,3 +1,4 @@
+coverage~=7.2.4
 beautifulsoup4==4.12.2
 flask~=3.0.1
 Flask-SQLAlchemy~=3.0.5
@@ -80,3 +81,10 @@ lxml==5.1.0
 xlrd~=2.0.1
 pydantic~=1.10.0
 pgvecto-rs==0.1.4
+xlrd~=2.0.1
+pdfminer==20191125
+pdfminer.six==20201018
+pypdf==4.2.0
+PyMuPDF==1.24.0
+networkx==3.3
+torch==2.2.2
